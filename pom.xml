@@ -31,4 +31,14 @@
           <scope>test</scope>
       </dependency>
   </dependencies>
+    
+    <distributionManagement>
+        <downloadUrl>https://github.com/neilessy/unsafe</downloadUrl>
+        <repository>
+            <id>local</id>
+            <name>Local Repository</name>
+          <url>file:///repo1</url>
+          <layout>default</layout>
+        </repository>
+    </distributionManagement>
 </project>
