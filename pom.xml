@@ -35,8 +35,8 @@
     <distributionManagement>
         <downloadUrl>https://github.com/neilessy/bluemold-unsafe</downloadUrl>
         <repository>
-            <id>local</id>
-            <name>Local Repository</name>
+            <id>repo1</id>
+            <name>Temporary Repository</name>
           <url>file:///repo1</url>
           <layout>default</layout>
         </repository>
