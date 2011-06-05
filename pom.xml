@@ -4,7 +4,7 @@
 
   <groupId>org.bluemold</groupId>
   <artifactId>unsafe</artifactId>
-  <version>1.0</version>
+  <version>0.1</version>
   <inceptionYear>2011</inceptionYear>
   <packaging>jar</packaging>
 
@@ -33,7 +33,7 @@
   </dependencies>
     
     <distributionManagement>
-        <downloadUrl>https://github.com/neilessy/unsafe</downloadUrl>
+        <downloadUrl>https://github.com/neilessy/bluemold-unsafe</downloadUrl>
         <repository>
             <id>local</id>
             <name>Local Repository</name>
