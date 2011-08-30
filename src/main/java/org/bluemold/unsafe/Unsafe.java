@@ -4,8 +4,6 @@ import java.lang.reflect.Field;
 
 /**
  * Unsafe<br/>
- * Author: Neil Essy<br/>
- * Created: 4/22/11<br/>
  * <p/>
  * [Description]
  */
