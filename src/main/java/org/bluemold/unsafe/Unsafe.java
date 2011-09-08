@@ -89,7 +89,7 @@ public final class Unsafe
 		private static long getIndex() {
 			long index = 0;
 			try {
-				index = _UNSAFE.objectFieldOffset( UnsafeReferenceContainer.class.getField( "reference" ) );
+				index = _UNSAFE.objectFieldOffset( UnsafeReferenceContainer.class.getDeclaredField( "reference" ) );
 			}
 			catch ( NoSuchFieldException e )
 			{
