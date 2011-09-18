@@ -54,34 +54,6 @@ public final class Unsafe
 		return cs8supported;
 	}
 
-	/**
-	 * Returns -1 if a is "naturally" less than b,
-	 * 1 if b is "naturally" less than a
-	 * and 0 if they are equal
-	 * @param a first reference
-	 * @param b second reference
-	 * @return comparison
-	 */
-	public static int naturalReferenceCompare( Object a, Object b ) {
-		int ret = 0;
-		if ( a != b ) {
-			if ( is64Bit() ) {
-				long refA = convertReferenceToLong( a );
-				long refB = convertReferenceToLong( b );
-				if ( refA == refB )
-					throw new RuntimeException( "WTF" );
-				ret = refA < refB ? -1 : 1;
-			} else {
-				int refA = convertReferenceToInt( a );
-				int refB = convertReferenceToInt( b );
-				if ( refA == refB )
-					throw new RuntimeException( "WTF" );
-				ret = refA < refB ? -1 : 1;
-			}
-		}
-		return ret;
-	}
-
 	private static class UnsafeReferenceContainer {
 
 		private static long referenceIndex = getIndex();
