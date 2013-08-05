@@ -130,6 +130,10 @@ public final class Unsafe
 		_UNSAFE.putIntVolatile( o, fieldIndex, o2 );
 	}
 
+	public static Object getObject( Object o, long fieldIndex ) {
+		return _UNSAFE.getObject( o, fieldIndex );
+	}
+
 	public static Object getObjectVolatile( Object o, long fieldIndex ) {
 		return _UNSAFE.getObjectVolatile( o, fieldIndex );
 	}
