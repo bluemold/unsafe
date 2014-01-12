@@ -11,7 +11,7 @@ public final class Unsafe
 {
 	public static final String unsafeErrorMsg = "Exception during call to get unsafe offset";
 
-	private static final sun.misc.Unsafe _UNSAFE = getSunUnsafe();
+	public static final sun.misc.Unsafe us = getSunUnsafe();
 
 	private static sun.misc.Unsafe getSunUnsafe() {
 		sun.misc.Unsafe unsafe;
@@ -54,6 +54,8 @@ public final class Unsafe
 		return cs8supported;
 	}
 
+	public static sun.misc.Unsafe get() { return us; }
+
 	private static class UnsafeReferenceContainer {
 
 		private static long referenceIndex = getIndex();
@@ -61,7 +63,7 @@ public final class Unsafe
 		private static long getIndex() {
 			long index = 0;
 			try {
-				index = _UNSAFE.objectFieldOffset( UnsafeReferenceContainer.class.getDeclaredField( "reference" ) );
+				index = us.objectFieldOffset( UnsafeReferenceContainer.class.getDeclaredField( "reference" ) );
 			}
 			catch ( NoSuchFieldException e )
 			{
@@ -77,18 +79,18 @@ public final class Unsafe
 			this.reference = reference;
 		}
 		public long getAsLong() {
-			return _UNSAFE.getLong( this, referenceIndex );
+			return us.getLong( this, referenceIndex );
 		}
 		public int getAsInt() {
-			return _UNSAFE.getInt( this, referenceIndex );
+			return us.getInt( this, referenceIndex );
 		}
 	}
 
 	public static int getInt( Object target, long index ) {
-		return _UNSAFE.getInt( target, index );
+		return us.getInt( target, index );
 	}
 	public static long getLong( Object target, long index ) {
-		return _UNSAFE.getLong( target, index );
+		return us.getLong( target, index );
 	}
 	public static long convertReferenceToLong( Object target ) {
 		return new UnsafeReferenceContainer( target ).getAsLong();
@@ -100,61 +102,61 @@ public final class Unsafe
 
 	public static long objectDeclaredFieldOffset( Class clazz, String name ) {
 		try {
-			return _UNSAFE.objectFieldOffset( clazz.getDeclaredField( name ) );
+			return us.objectFieldOffset( clazz.getDeclaredField( name ) );
 		} catch ( Throwable t ) {
 			throw new RuntimeException( unsafeErrorMsg, t );
 		}
 	}
 
 	public static long objectFieldOffset( Field field ) {
-		return _UNSAFE.objectFieldOffset( field );
+		return us.objectFieldOffset( field );
 	}
 
 	public static boolean compareAndSwapObject( Object o, long fieldIndex, Object expect, Object update ) {
-		return _UNSAFE.compareAndSwapObject( o, fieldIndex, expect, update );
+		return us.compareAndSwapObject( o, fieldIndex, expect, update );
 	}
 
 	public static int getIntVolatile( Object o, long fieldIndex ) {
-		return _UNSAFE.getIntVolatile( o, fieldIndex );
+		return us.getIntVolatile( o, fieldIndex );
 	}
 
 	public static void putIntVolatile( Object o, long fieldIndex, int o2 ) {
-		_UNSAFE.putIntVolatile( o, fieldIndex, o2 );
+		us.putIntVolatile(o, fieldIndex, o2);
 	}
 
 	public static int getLongVolatile( Object o, long fieldIndex ) {
-		return _UNSAFE.getIntVolatile( o, fieldIndex );
+		return us.getIntVolatile( o, fieldIndex );
 	}
 
 	public static void putLongVolatile( Object o, long fieldIndex, int o2 ) {
-		_UNSAFE.putIntVolatile( o, fieldIndex, o2 );
+		us.putIntVolatile(o, fieldIndex, o2);
 	}
 
 	public static Object getObject( Object o, long fieldIndex ) {
-		return _UNSAFE.getObject( o, fieldIndex );
+		return us.getObject( o, fieldIndex );
 	}
 
 	public static Object getObjectVolatile( Object o, long fieldIndex ) {
-		return _UNSAFE.getObjectVolatile( o, fieldIndex );
+		return us.getObjectVolatile( o, fieldIndex );
 	}
 
 	public static void putObjectVolatile( Object o, long fieldIndex, Object o2 ) {
-		_UNSAFE.putObjectVolatile( o, fieldIndex, o2 );
+		us.putObjectVolatile(o, fieldIndex, o2);
 	}
 
 	public static boolean compareAndSwapInt( Object o, long fieldIndex, int expect, int update ) {
-		return _UNSAFE.compareAndSwapInt( o, fieldIndex, expect, update );
+		return us.compareAndSwapInt( o, fieldIndex, expect, update );
 	}
 
 	public static boolean compareAndSwapLong( Object o, long fieldIndex, long expect, long update ) {
-		return _UNSAFE.compareAndSwapLong( o, fieldIndex, expect, update );
+		return us.compareAndSwapLong( o, fieldIndex, expect, update );
 	}
 
 	public static int arrayBaseOffset( Class clazz ) {
-		return _UNSAFE.arrayBaseOffset( clazz );
+		return us.arrayBaseOffset( clazz );
 	}
 
 	public static int arrayIndexScale( Class clazz ) {
-		return _UNSAFE.arrayIndexScale( clazz );
+		return us.arrayIndexScale( clazz );
 	}
 }
